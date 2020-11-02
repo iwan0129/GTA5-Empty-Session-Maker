@@ -10,6 +10,7 @@ namespace GTA5_Empty_Session_Maker
 
         private const string Game = "GTA5.exe";
 
+        private const int SuspendTime = 10000;
         private const int VK_RETURN = 0x0D;
 
         #endregion Private Fields
@@ -37,7 +38,7 @@ namespace GTA5_Empty_Session_Maker
 
                         if (NativeMethods.SuspendThread(tHandle) != -1)
                         {
-                            Thread.Sleep(10000);
+                            Thread.Sleep(SuspendTime);
 
                             NativeMethods.ResumeThread(tHandle);
                         }
