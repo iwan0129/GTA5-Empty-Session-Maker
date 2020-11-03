@@ -25,28 +25,25 @@ namespace GTA5_Empty_Session_Maker
 
             while (true)
             {
-                if ((pID = Game.GetProcessID()) != 0)
+                if ((pID = Game.GetProcessID()) != 0 && (tHandle = pID.GetThreadHandle()) != IntPtr.Zero)
                 {
-                    if ((tHandle = pID.GetThreadHandle()) != IntPtr.Zero)
+                    Console.WriteLine("Press ENTER to make empty session only if you are currently in a session and not alt-tabbed from the game");
+
+                    while (NativeMethods.GetAsyncKeyState(VK_RETURN) != -32767)
                     {
-                        Console.WriteLine("Press ENTER to make empty session only if you are currently in a session and not alt-tabbed from the game");
-
-                        while (NativeMethods.GetAsyncKeyState(VK_RETURN) != -32767)
-                        {
-                            Thread.Sleep(1);
-                        }
-
-                        if (NativeMethods.SuspendThread(tHandle) != -1)
-                        {
-                            Thread.Sleep(SuspendTime);
-
-                            NativeMethods.ResumeThread(tHandle);
-                        }
-
-                        NativeMethods.CloseHandle(tHandle);
-
-                        Console.Clear();
+                        Thread.Sleep(1);
                     }
+
+                    if (NativeMethods.SuspendThread(tHandle) != -1)
+                    {
+                        Thread.Sleep(SuspendTime);
+
+                        NativeMethods.ResumeThread(tHandle);
+                    }
+
+                    NativeMethods.CloseHandle(tHandle);
+
+                    Console.Clear();
                 }
 
                 Thread.Sleep(1);
