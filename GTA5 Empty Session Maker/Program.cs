@@ -19,14 +19,14 @@ namespace GTA5_Empty_Session_Maker
 
         private static void Main()
         {
+            uint pID;
+
+            IntPtr tHandle;
+
             while (true)
             {
-                uint pID;
-
                 if ((pID = Game.GetProcessID()) != 0)
                 {
-                    IntPtr tHandle;
-
                     if ((tHandle = pID.GetThreadHandle()) != IntPtr.Zero)
                     {
                         Console.WriteLine("Press ENTER to make empty session only if you are currently in a session and not alt-tabbed from the game");
