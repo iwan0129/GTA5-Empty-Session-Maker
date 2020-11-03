@@ -6,7 +6,6 @@ namespace GTA5_Empty_Session_Maker
     [Flags]
     internal enum PROCESS : int
     {
-        NONE = 0,
         TERMINATE = 0x0001,
         CREATE_THREAD = 0x0002,
         VM_OPERATION = 0x0008,
@@ -38,7 +37,6 @@ namespace GTA5_Empty_Session_Maker
     [Flags]
     internal enum TH32CS : uint
     {
-        NONE = 0,
         SNAPHEAPLIST = 0x00000001,
         SNAPPROCESS = 0x00000002,
         SNAPTHREAD = 0x00000004,
@@ -51,7 +49,6 @@ namespace GTA5_Empty_Session_Maker
     [Flags]
     internal enum THREAD : int
     {
-        NONE = 0,
         TERMINATE = 0x0001,
         SUSPEND_RESUME = 0x0002,
         GET_CONTEXT = 0x0008,
