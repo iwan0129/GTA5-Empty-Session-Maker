@@ -119,7 +119,11 @@ namespace GTA5_Empty_Session_Maker
         public static extern short GetAsyncKeyState(int vKey);
 
         [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern IntPtr OpenProcess(PROCESS Access, bool bInheritHandle, uint processID);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr OpenThread(THREAD Access, bool bInheritHandle, uint threadID);
+
         [DllImport("kernel32.dll")]
         public static extern bool Process32Next(IntPtr hSnapshot, ref PROCESSENTRY32 lppe);
 
