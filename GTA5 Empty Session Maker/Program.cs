@@ -6,16 +6,9 @@ namespace GTA5_Empty_Session_Maker
 {
     internal static class Program
     {
-        #region Private Fields
-
         private const string Game = "GTA5.exe";
-
         private const int SuspendTime = 10000;
         private const int VK_RETURN = 0x0D;
-
-        #endregion Private Fields
-
-        #region Private Methods
 
         private static void Main()
         {
@@ -49,7 +42,5 @@ namespace GTA5_Empty_Session_Maker
                 Thread.Sleep(1);
             }
         }
-
-        #endregion Private Methods
     }
 }

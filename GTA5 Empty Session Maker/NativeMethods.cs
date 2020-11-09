@@ -74,9 +74,7 @@ namespace GTA5_Empty_Session_Maker
         public uint cntThreads;
         public uint th32ParentProcessID;
         public uint dwFlags;
-
         public IntPtr th32DefaultHeapID;
-
         public int pcPriClassBase;
 
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
@@ -107,8 +105,6 @@ namespace GTA5_Empty_Session_Maker
 
     internal static class NativeMethods
     {
-        #region Public Methods
-
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool CloseHandle(IntPtr Handle);
 
@@ -135,7 +131,5 @@ namespace GTA5_Empty_Session_Maker
 
         [DllImport("kernel32.dll")]
         public static extern bool Thread32Next(IntPtr hSnapshot, ref THREADENTRY32 lppe);
-
-        #endregion Public Methods
     }
 }

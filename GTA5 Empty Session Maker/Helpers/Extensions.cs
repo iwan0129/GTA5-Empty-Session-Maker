@@ -5,8 +5,6 @@ namespace GTA5_Empty_Session_Maker.Helpers
 {
     internal static class Extensions
     {
-        #region Public Methods
-
         public static uint GetProcessID(this string procName)
         {
             PROCESSENTRY32 process = new PROCESSENTRY32((uint)Marshal.SizeOf(typeof(PROCESSENTRY32)));
@@ -58,7 +56,5 @@ namespace GTA5_Empty_Session_Maker.Helpers
 
             return tHandle;
         }
-
-        #endregion Public Methods
     }
 }
