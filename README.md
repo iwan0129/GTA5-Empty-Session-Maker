@@ -131,4 +131,4 @@ uzunow0129@gmail.com
 [donate-shield]: https://img.shields.io/badge/DONATE--informational?style=for-the-badge
 [donate-url]: https://paypal.me/iwan0129?locale.x=en_US
 [Program.cs]: https://github.com/iwan0129/GTA5-Empty-Session-Maker/blob/master/GTA5%20Empty%20Session%20Maker/Program.cs
-[downloads-shield]: https://img.shields.io/github/downloads/iwan0129/Nvidia-Cache-Cleaner/total.svg?style=for-the-badge
+[downloads-shield]: https://img.shields.io/github/downloads/iwan0129/GTA5-Empty-Session-Maker/total.svg?style=for-the-badge
