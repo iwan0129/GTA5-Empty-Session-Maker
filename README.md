@@ -53,7 +53,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Generates Passwords and SerialKeys
+Makes empty online session
 
 ### Built With
 .NET Framework 4.5 or Higher
