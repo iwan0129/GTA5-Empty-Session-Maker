@@ -43,10 +43,8 @@ namespace GTA5_Empty_Session_Maker.Helpers
             {
                 do
                 {
-                    if (thread.th32OwnerProcessID == pID)
+                    if (thread.th32OwnerProcessID == pID && (tHandle = NativeMethods.OpenThread(THREAD.ALL_ACCESS, false, thread.th32ThreadID)) != IntPtr.Zero)
                     {
-                        tHandle = NativeMethods.OpenThread(THREAD.ALL_ACCESS, false, thread.th32ThreadID);
-
                         break;
                     }
                 } while (NativeMethods.Thread32Next(hSnapshot, ref thread));
