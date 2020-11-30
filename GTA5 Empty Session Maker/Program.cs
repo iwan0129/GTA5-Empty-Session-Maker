@@ -7,6 +7,7 @@ namespace GTA5_Empty_Session_Maker
     internal static class Program
     {
         private const string Game = "GTA5.exe";
+
         private const int SuspendTime = 10000;
         private const int VK_RETURN = 0x0D;
 

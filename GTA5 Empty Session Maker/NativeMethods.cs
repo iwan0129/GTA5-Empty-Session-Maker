@@ -74,7 +74,9 @@ namespace GTA5_Empty_Session_Maker
         public uint cntThreads;
         public uint th32ParentProcessID;
         public uint dwFlags;
+
         public IntPtr th32DefaultHeapID;
+
         public int pcPriClassBase;
 
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
