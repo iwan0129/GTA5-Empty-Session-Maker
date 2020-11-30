@@ -83,8 +83,6 @@ Start the program. Start GTA5 and enter public online lobby. After you load the 
 
 If you want to change the time for which the game thread is frozen look at `private const int SuspendTime` in [Program.cs]
 
-##
-
 ## Roadmap
 
 See the [open issues](https://github.com/iwan0129/GTA5-Empty-Session-Maker/issues) for a list of proposed features (and known issues).
