@@ -77,7 +77,10 @@ git clone https://github.com/iwan0129/GTA5-Empty-Session-Maker.git
 
 ## Usage
 
-Start the program. Start GTA5 and enter public online lobby. After you load the lobby press enter and wait for 10 seconds. After the empty session is made you can close the program
+Start the program.<br>
+Start GTA5 and enter public online lobby.<br>
+After you load the lobby press enter and wait for 10 seconds.<br>
+After the empty session is made you can close the program<br>
 
 ## Note
 
