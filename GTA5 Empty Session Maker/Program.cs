@@ -47,16 +47,7 @@ namespace GTA5_Empty_Session_Maker
                         Notify = false;
                     }
 
-                    IntPtr handle;
-
-                    if ((handle = NativeMethods.OpenProcess(PROCESS.ALL_ACCESS, false, gtaEntry.th32ProcessID)) == IntPtr.Zero)
-                    {
-                        Console.WriteLine("Unable to Open GTA5 Process\n");
-
-                        Console.ReadLine();
-
-                        Environment.Exit(-1);
-                    }
+                    IntPtr handle = gtaEntry.OpenHandle();
 
                     while (NativeMethods.GetAsyncKeyState(VK_RETURN) != -32767 && NativeMethods.GetForegroundWindow() != handle)
                     {
@@ -65,14 +56,7 @@ namespace GTA5_Empty_Session_Maker
 
                     NativeMethods.CloseHandle(handle);
 
-                    if ((handle = NativeMethods.OpenThread(THREAD.ALL_ACCESS, false, gtaThread.th32ThreadID)) == IntPtr.Zero)
-                    {
-                        Console.WriteLine("Unable To Open Game Thread\n");
-
-                        Console.ReadLine();
-
-                        Environment.Exit(-1);
-                    }
+                    handle = gtaThread.OpenHandle();
 
                     Console.WriteLine($"Attempting To Suspend Game Thread for {SuspendTime} miliseconds\n");
 

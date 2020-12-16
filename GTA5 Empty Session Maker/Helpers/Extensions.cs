@@ -80,5 +80,37 @@ namespace GTA5_Empty_Session_Maker.Helpers
 
             return isAlive;
         }
+
+        public static IntPtr OpenHandle(this PROCESSENTRY32 pEntry)
+        {
+            IntPtr handle = NativeMethods.OpenProcess(PROCESS.ALL_ACCESS, false, pEntry.th32ProcessID);
+
+            if (handle == IntPtr.Zero)
+            {
+                Console.WriteLine("Unable To Open Game Process\n");
+
+                Console.ReadLine();
+
+                Environment.Exit(-1);
+            }
+
+            return handle;
+        }
+
+        public static IntPtr OpenHandle(this THREADENTRY32 tEntry)
+        {
+            IntPtr handle = NativeMethods.OpenThread(THREAD.ALL_ACCESS, false, tEntry.th32ThreadID);
+
+            if (handle == IntPtr.Zero)
+            {
+                Console.WriteLine("Unable To Open Game Thread\n");
+
+                Console.ReadLine();
+
+                Environment.Exit(-1);
+            }
+
+            return handle;
+        }
     }
 }
