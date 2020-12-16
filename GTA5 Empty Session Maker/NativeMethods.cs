@@ -86,6 +86,31 @@ namespace GTA5_Empty_Session_Maker
         {
             this.dwSize = dwSize;
         }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public static bool operator==(PROCESSENTRY32 pEntry, PROCESSENTRY32 _pEntry)
+        {
+            return pEntry.szExeFile == _pEntry.szExeFile && pEntry.th32ProcessID == _pEntry.th32ProcessID;
+        }
+
+        public static bool operator !=(PROCESSENTRY32 pEntry, PROCESSENTRY32 _pEntry)
+        {
+            return !(pEntry == _pEntry);
+        }
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -102,6 +127,31 @@ namespace GTA5_Empty_Session_Maker
         public THREADENTRY32(uint dwSize) : this()
         {
             this.dwSize = dwSize;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public static bool operator ==(THREADENTRY32 tEntry, THREADENTRY32 _tEntry)
+        {
+            return tEntry.th32OwnerProcessID == _tEntry.th32OwnerProcessID && tEntry.th32ThreadID == _tEntry.th32ThreadID;
+        }
+
+        public static bool operator !=(THREADENTRY32 tEntry, THREADENTRY32 _tEntry)
+        {
+            return !(tEntry == _tEntry);
         }
     }
 
@@ -133,5 +183,8 @@ namespace GTA5_Empty_Session_Maker
 
         [DllImport("kernel32.dll")]
         public static extern bool Thread32Next(IntPtr hSnapshot, ref THREADENTRY32 lppe);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
     }
 }

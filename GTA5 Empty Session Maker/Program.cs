@@ -11,33 +11,87 @@ namespace GTA5_Empty_Session_Maker
         private const int SuspendTime = 10000;
         private const int VK_RETURN = 0x0D;
 
+        private static bool Notify { get; set; }
+
         private static void Main()
         {
-            uint pID;
+            PROCESSENTRY32 gtaEntry = default;
 
-            IntPtr tHandle;
+            THREADENTRY32 gtaThread = default;
 
             while (true)
             {
-                if ((pID = Game.GetProcessID()) != 0 && (tHandle = pID.GetThreadHandle()) != IntPtr.Zero)
+                if (gtaEntry == default || !gtaEntry.IsAlive())
                 {
-                    Console.WriteLine("Press ENTER to make empty session only if you are currently in a session and not alt-tabbed from the game");
+                    gtaEntry = Game.GetProcess();
 
-                    while (NativeMethods.GetAsyncKeyState(VK_RETURN) != -32767)
+                    if ((gtaThread = gtaEntry.GetThread()) != default)
+                    {
+                        Notify = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unable to Get GTA5 Thread\n");
+
+                        Console.ReadLine();
+
+                        Environment.Exit(-1);
+                    }
+                }
+                else
+                {
+                    if (Notify)
+                    {
+                        Console.WriteLine("Press ENTER to make empty session only and make sure you are not ALT-TAB-ed\n");
+                        
+                        Notify = false;
+                    }
+
+                    IntPtr handle;
+
+                    if ((handle = NativeMethods.OpenProcess(PROCESS.ALL_ACCESS, false, gtaEntry.th32ProcessID)) == IntPtr.Zero)
+                    {
+                        Console.WriteLine("Unable to Open GTA5 Process\n");
+
+                        Console.ReadLine();
+
+                        Environment.Exit(-1);
+                    }
+
+                    while (NativeMethods.GetAsyncKeyState(VK_RETURN) != -32767 && NativeMethods.GetForegroundWindow() != handle)
                     {
                         Thread.Sleep(1);
                     }
 
-                    if (NativeMethods.SuspendThread(tHandle) != -1)
+                    NativeMethods.CloseHandle(handle);
+
+                    if ((handle = NativeMethods.OpenThread(THREAD.ALL_ACCESS, false, gtaThread.th32ThreadID)) == IntPtr.Zero)
+                    {
+                        Console.WriteLine("Unable To Open Game Thread\n");
+
+                        Console.ReadLine();
+
+                        Environment.Exit(-1);
+                    }
+
+                    Console.WriteLine($"Attempting To Suspend Game Thread for {SuspendTime} miliseconds\n");
+
+                    if (NativeMethods.SuspendThread(handle) != -1)
                     {
                         Thread.Sleep(SuspendTime);
 
-                        NativeMethods.ResumeThread(tHandle);
+                        Console.WriteLine("Resuming Game Thread\n");
+
+                        NativeMethods.ResumeThread(handle);
+
+                        Console.WriteLine("Game Thread Resumed\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unable To Suspend Game Thread\n");
                     }
 
-                    NativeMethods.CloseHandle(tHandle);
-
-                    Console.Clear();
+                    NativeMethods.CloseHandle(handle);
                 }
 
                 Thread.Sleep(1);

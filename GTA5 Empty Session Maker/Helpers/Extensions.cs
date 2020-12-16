@@ -5,54 +5,80 @@ namespace GTA5_Empty_Session_Maker.Helpers
 {
     internal static class Extensions
     {
-        public static uint GetProcessID(this string procName)
+        public static PROCESSENTRY32 GetProcess(this string procName)
         {
-            PROCESSENTRY32 process = new PROCESSENTRY32((uint)Marshal.SizeOf(typeof(PROCESSENTRY32)));
+            PROCESSENTRY32 pEntry = new PROCESSENTRY32((uint)Marshal.SizeOf(typeof(PROCESSENTRY32)));
+
+            bool found = false;
 
             IntPtr hSnapshot = NativeMethods.CreateToolhelp32Snapshot(TH32CS.SNAPPROCESS, 0);
 
-            uint pID = 0;
-
             if (hSnapshot != IntPtr.Zero)
             {
                 do
                 {
-                    if (process.szExeFile == procName)
+                    if (pEntry.szExeFile == procName)
                     {
-                        pID = process.th32ProcessID;
+                        found = true;
 
                         break;
                     }
-                } while (NativeMethods.Process32Next(hSnapshot, ref process));
+                } while (NativeMethods.Process32Next(hSnapshot, ref pEntry));
 
                 NativeMethods.CloseHandle(hSnapshot);
             }
 
-            return pID;
+            if (found)
+            {
+                return pEntry;
+            }
+
+            return default;
         }
 
-        public static IntPtr GetThreadHandle(this uint pID)
+        public static THREADENTRY32 GetThread(this PROCESSENTRY32 pEntry)
         {
-            THREADENTRY32 thread = new THREADENTRY32((uint)Marshal.SizeOf(typeof(THREADENTRY32)));
+            THREADENTRY32 tEntry = new THREADENTRY32((uint)Marshal.SizeOf(typeof(THREADENTRY32)));
+
+            bool found = false;
 
             IntPtr hSnapshot = NativeMethods.CreateToolhelp32Snapshot(TH32CS.SNAPTHREAD, 0);
 
-            IntPtr tHandle = IntPtr.Zero;
-
             if (hSnapshot != IntPtr.Zero)
             {
                 do
                 {
-                    if (thread.th32OwnerProcessID == pID && (tHandle = NativeMethods.OpenThread(THREAD.ALL_ACCESS, false, thread.th32ThreadID)) != IntPtr.Zero)
+                    if (tEntry.th32OwnerProcessID == pEntry.th32ProcessID)
                     {
+                        found = true;
+
                         break;
                     }
-                } while (NativeMethods.Thread32Next(hSnapshot, ref thread));
+                } while (NativeMethods.Thread32Next(hSnapshot, ref tEntry));
 
                 NativeMethods.CloseHandle(hSnapshot);
             }
 
-            return tHandle;
+            if (found)
+            {
+                return tEntry;
+            }
+
+            return default;
+        }
+
+        public static bool IsAlive(this PROCESSENTRY32 pEntry)
+        {
+            IntPtr pHandle = NativeMethods.OpenProcess(PROCESS.ALL_ACCESS, false, pEntry.th32ProcessID);
+
+            bool isAlive = pHandle != IntPtr.Zero;
+
+            if (isAlive)
+            {
+                NativeMethods.CloseHandle(pHandle);
+            }
+
+            return isAlive;
         }
     }
 }
