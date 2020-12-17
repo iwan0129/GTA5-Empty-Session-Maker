@@ -23,20 +23,34 @@ namespace GTA5_Empty_Session_Maker
             {
                 if (gtaEntry == default || !gtaEntry.IsAlive())
                 {
-                    gtaEntry = Game.GetProcess();
+                    Console.WriteLine("Attempting To Find GTA5 Process...\n");
 
-                    if ((gtaThread = gtaEntry.GetThread()) != default)
+                    if ((gtaEntry = Game.GetProcess()) != default)
                     {
-                        Notify = true;
+                        Console.WriteLine("Attempting To Get GTA5 Thread...\n");
+
+                        if ((gtaThread = gtaEntry.GetThread()) != default)
+                        {
+                            Notify = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Unable to Get GTA5 Thread.\n");
+
+                            Console.ReadLine();
+
+                            Environment.Exit(-1);
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Unable to Get GTA5 Thread\n");
+                        Console.WriteLine("Unable To Find GTA5 Process.\nPress ENTER When You Launch The Game.\n");
 
                         Console.ReadLine();
 
-                        Environment.Exit(-1);
+                        Console.Clear();
                     }
+                    
                 }
                 else
                 {
