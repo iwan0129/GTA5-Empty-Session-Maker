@@ -53,7 +53,7 @@
 
 ![Screenshot]
 
-Program that makes GTA5 Online Empty Session
+Program That Makes GTA5 Online Empty Session
 
 ### Built With
 .NET Framework 4.5 or Higher
