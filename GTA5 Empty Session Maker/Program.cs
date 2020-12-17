@@ -76,13 +76,15 @@ namespace GTA5_Empty_Session_Maker
 
                     if (NativeMethods.SuspendThread(handle) != -1)
                     {
+                        Console.WriteLine("Successfully Suspended Game Thread.\n");
+
                         Thread.Sleep(SuspendTime);
 
-                        Console.WriteLine("Resuming Game Thread\n");
+                        Console.WriteLine("Resuming Game Thread.\n");
 
                         NativeMethods.ResumeThread(handle);
 
-                        Console.WriteLine("Game Thread Resumed\n");
+                        Console.WriteLine("Game Thread Resumed.\n");
                     }
                     else
                     {
