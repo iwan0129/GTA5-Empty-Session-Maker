@@ -21,7 +21,7 @@
   <h3 align="center">GTA5 Empty Session Maker</h3>
 
   <p align="center">
-    Program that makes GTA5 Online Empty Session
+    Program That Makes GTA5 Online Empty Session
     <br />
     <a href="https://github.com/iwan0129/GTA5-Empty-Session-Maker"><strong>Explore the docs »</strong></a>
     <br />
