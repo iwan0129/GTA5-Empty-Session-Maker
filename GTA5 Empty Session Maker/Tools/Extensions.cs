@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 
-namespace GTA5_Empty_Session_Maker.Helpers
+namespace GTA5_Empty_Session_Maker.Tools
 {
     internal static class Extensions
     {
         public static PROCESSENTRY32 GetProcess(this string procName)
         {
-            PROCESSENTRY32 pEntry = new PROCESSENTRY32((uint)Marshal.SizeOf(typeof(PROCESSENTRY32)));
+            PROCESSENTRY32 pEntry = new PROCESSENTRY32(PROCESSENTRY32.Size);
 
             bool found = false;
 
@@ -38,7 +37,7 @@ namespace GTA5_Empty_Session_Maker.Helpers
 
         public static THREADENTRY32 GetThread(this PROCESSENTRY32 pEntry)
         {
-            THREADENTRY32 tEntry = new THREADENTRY32((uint)Marshal.SizeOf(typeof(THREADENTRY32)));
+            THREADENTRY32 tEntry = new THREADENTRY32(THREADENTRY32.Size);
 
             bool found = false;
 

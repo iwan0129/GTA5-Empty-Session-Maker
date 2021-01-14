@@ -90,6 +90,8 @@ namespace GTA5_Empty_Session_Maker
     [StructLayout(LayoutKind.Sequential)]
     internal struct PROCESSENTRY32
     {
+        public static uint Size = (uint)Marshal.SizeOf(typeof(PROCESSENTRY32));
+
         public uint dwSize;
         public uint cntUsage;
         public uint th32ProcessID;
@@ -140,6 +142,8 @@ namespace GTA5_Empty_Session_Maker
     [StructLayout(LayoutKind.Sequential)]
     internal struct THREADENTRY32
     {
+        public static uint Size = (uint)Marshal.SizeOf(typeof(THREADENTRY32));
+
         public uint dwSize;
         public uint cntUsage;
         public uint th32ThreadID;
