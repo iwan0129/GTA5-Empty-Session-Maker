@@ -50,20 +50,21 @@ namespace GTA5_Empty_Session_Maker
 
                         Console.Clear();
                     }
-                    
+
                 }
                 else
                 {
                     if (Notify)
                     {
                         Console.WriteLine("Press ENTER to make empty session only and make sure you are not ALT-TAB-ed\n");
-                        
+
                         Notify = false;
                     }
 
                     IntPtr handle = gtaEntry.OpenHandle();
 
-                    while (NativeMethods.GetAsyncKeyState(VK_RETURN) != -32767 && NativeMethods.GetForegroundWindow() != handle)
+                    while (NativeMethods.GetAsyncKeyState(VK_RETURN) != -32767
+                        && NativeMethods.GetForegroundWindow() != handle)
                     {
                         Thread.Sleep(1);
                     }
