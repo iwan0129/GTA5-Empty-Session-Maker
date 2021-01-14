@@ -21,7 +21,7 @@
   <h3 align="center">GTA5 Empty Session Maker</h3>
 
   <p align="center">
-    Makes empty online session
+    Program That Makes GTA5 Online Empty Session
     <br />
     <a href="https://github.com/iwan0129/GTA5-Empty-Session-Maker"><strong>Explore the docs »</strong></a>
     <br />
@@ -51,9 +51,9 @@
 
 ## About The Project
 
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+![Screenshot]
 
-Makes empty online session
+Program That Makes GTA5 Online Empty Session
 
 ### Built With
 .NET Framework 4.5 or Higher
@@ -133,3 +133,4 @@ uzunow0129@gmail.com
 [paypal-donate]: https://img.shields.io/badge/donate-PayPal-104098.svg?style=for-the-badge&logo=PayPal
 [Program.cs]: https://github.com/iwan0129/GTA5-Empty-Session-Maker/blob/master/GTA5%20Empty%20Session%20Maker/Program.cs
 [downloads-shield]: https://img.shields.io/github/downloads/iwan0129/GTA5-Empty-Session-Maker/total.svg?style=for-the-badge
+[Screenshot]: Images/Screenshot.png
