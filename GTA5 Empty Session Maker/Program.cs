@@ -50,7 +50,6 @@ namespace GTA5_Empty_Session_Maker
 
                         Console.Clear();
                     }
-
                 }
                 else
                 {
