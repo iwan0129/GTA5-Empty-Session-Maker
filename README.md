@@ -56,18 +56,14 @@
 Program That Makes GTA5 Online Empty Session
 
 ### Built With
-.NET Framework 4.5 or Higher
+C# 8.0<br>
+.NET Framework 4.5
 
 ## Getting Started
 
-<!-- ### Prerequisites
+### Prerequisites
+.NET Framework 4.5 or Higher
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
--->
 ### Installation
 
 Clone the repo
