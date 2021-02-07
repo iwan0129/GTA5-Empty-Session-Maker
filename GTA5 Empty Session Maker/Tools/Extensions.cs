@@ -6,7 +6,7 @@ namespace GTA5_Empty_Session_Maker.Tools
     {
         public static PROCESSENTRY32 GetProcess(this string procName)
         {
-            PROCESSENTRY32 pEntry = new PROCESSENTRY32(PROCESSENTRY32.Size);
+            PROCESSENTRY32 pEntry = new(PROCESSENTRY32.Size);
 
             bool found = false;
 
@@ -37,7 +37,7 @@ namespace GTA5_Empty_Session_Maker.Tools
 
         public static THREADENTRY32 GetThread(this PROCESSENTRY32 pEntry)
         {
-            THREADENTRY32 tEntry = new THREADENTRY32(THREADENTRY32.Size);
+            THREADENTRY32 tEntry = new(THREADENTRY32.Size);
 
             bool found = false;
 
