@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace GTA5_Empty_Session_Maker.Tools
+namespace GTA5_Empty_Session_Maker.Utilities
 {
-    internal static class Extensions
+    internal static class ProcessUtilities
     {
         public static PROCESSENTRY32 GetProcess(this string procName)
         {
