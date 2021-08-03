@@ -27,12 +27,9 @@ namespace GTA5_Empty_Session_Maker.Utilities
                 NativeMethods.CloseHandle(hSnapshot);
             }
 
-            if (found)
-            {
-                return pEntry;
-            }
-
-            return default;
+            return found
+                ? pEntry
+                : default;
         }
 
         public static THREADENTRY32 GetThread(this PROCESSENTRY32 pEntry)
@@ -58,12 +55,9 @@ namespace GTA5_Empty_Session_Maker.Utilities
                 NativeMethods.CloseHandle(hSnapshot);
             }
 
-            if (found)
-            {
-                return tEntry;
-            }
-
-            return default;
+            return found
+                ? tEntry
+                : default;
         }
 
         public static bool IsAlive(this PROCESSENTRY32 pEntry)
@@ -82,34 +76,12 @@ namespace GTA5_Empty_Session_Maker.Utilities
 
         public static IntPtr OpenHandle(this PROCESSENTRY32 pEntry)
         {
-            IntPtr handle = NativeMethods.OpenProcess(PROCESS.ALL_ACCESS, false, pEntry.th32ProcessID);
-
-            if (handle == IntPtr.Zero)
-            {
-                Console.WriteLine("Unable To Open Game Process\n");
-
-                Console.ReadLine();
-
-                Environment.Exit(-1);
-            }
-
-            return handle;
+            return NativeMethods.OpenProcess(PROCESS.ALL_ACCESS, false, pEntry.th32ProcessID);
         }
 
         public static IntPtr OpenHandle(this THREADENTRY32 tEntry)
         {
-            IntPtr handle = NativeMethods.OpenThread(THREAD.ALL_ACCESS, false, tEntry.th32ThreadID);
-
-            if (handle == IntPtr.Zero)
-            {
-                Console.WriteLine("Unable To Open Game Thread\n");
-
-                Console.ReadLine();
-
-                Environment.Exit(-1);
-            }
-
-            return handle;
+            return NativeMethods.OpenThread(THREAD.ALL_ACCESS, false, tEntry.th32ThreadID);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace GTA5_Empty_Session_Maker
 
             while (true)
             {
-                if (gtaEntry == default || !gtaEntry.IsAlive())
+                if (!gtaEntry.IsAlive())
                 {
                     Console.WriteLine("Attempting To Find GTA5 Process...\n");
 
@@ -62,6 +62,15 @@ namespace GTA5_Empty_Session_Maker
 
                     IntPtr handle = gtaEntry.OpenHandle();
 
+                    if (handle == IntPtr.Zero)
+                    {
+                        Console.WriteLine("Unable To Open Game Process\n");
+
+                        Console.ReadLine();
+
+                        Environment.Exit(-1);
+                    }
+
                     while (NativeMethods.GetAsyncKeyState(VK_RETURN) != -32767
                         && NativeMethods.GetForegroundWindow() != handle)
                     {
@@ -71,6 +80,15 @@ namespace GTA5_Empty_Session_Maker
                     NativeMethods.CloseHandle(handle);
 
                     handle = gtaThread.OpenHandle();
+
+                    if (handle == IntPtr.Zero)
+                    {
+                        Console.WriteLine("Unable To Open Game Thread\n");
+
+                        Console.ReadLine();
+
+                        Environment.Exit(-1);
+                    }
 
                     Console.WriteLine($"Attempting To Suspend Game Thread for {SuspendTime} miliseconds\n");
 
