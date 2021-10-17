@@ -60,7 +60,6 @@ C# 9.0<br>
 ## Getting Started
 
 ### Prerequisites
-* .NET 5
 * .NET Framework 4.5 or Higher
 
 ### Installation
